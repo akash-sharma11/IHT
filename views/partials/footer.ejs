@@ -1,0 +1,66 @@
+<footer>
+    <div class="footer-container">
+        <div class="footer-column about-us-section">
+            <div class="footer-logo">
+                <img src="<%= footerData.companyLogoUrl %>" alt="Company Logo" style="max-width: 150px; margin-bottom: 10px;">
+            </div>
+            <div class="social-icons">
+                <% footerData.socialLinks.forEach(function(link) { %>
+                    <a href="<%= link.url %>" class="social-icon" aria-label="<%= link.label %>">
+                        <i class="<%= link.iconClass %>"></i>
+                    </a>
+                <% }); %>
+            </div>
+            <p><%= footerData.aboutText %></p>
+            <div class="badges">
+                <% footerData.badges.forEach(function(badge) { %>
+                    <div class="badge">
+                        <i class="<%= badge.iconClass %>"></i> <%= badge.text %>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <% footerData.quickLinks.forEach(function(link) { %>
+                    <li>
+                        <a href="<%= link.url %>"><%= link.text %></a>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <% footerData.contactInfo.forEach(function(item) { %>
+                    <div class="contact-item">
+                        <i class="<%= item.iconClass %> contact-icon"></i>
+                        <% if (item.type === 'text') { %>
+                            <p>
+                                <strong><%= item.label %></strong> <%= item.value %>
+                            </p>
+                        <% } else if (item.type === 'link') { %>
+                            <a href="<%= item.href %>"><%= item.value %></a>
+                        <% } %>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p class="copyright">&copy; <%= footerData.year %> <%= footerData.companyName %>. All Rights Reserved.</p>
+        <div class="legal-links">
+            <% footerData.legalLinks.forEach(function(link) { %>
+                <a href="<%= link.url %>"><%= link.text %></a>
+            <% }); %>
+        </div>
+    </div>
+    <div class="footer-brand">
+        <h2><%= footerData.brandTitle %></h2>
+        <p><%= footerData.brandTagline %></p>
+    </div>
+</footer>
+<script src="/js/script.js"></script>
+</body>
+</html>

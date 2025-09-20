@@ -1,0 +1,107 @@
+
+    <%- include('partials/header', headerData) %>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="hero-overlay"></div>
+            <div class="contact-hero-content">
+                <h1><%= heroTitle %></h1>
+                <p><%= heroSubtitle %></p>
+                <!--<div class="cta-buttons">
+                    <% finalCtaButtons.forEach(function(btn) { %>
+                        <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                    <% }); %>
+                </div>-->
+            </div>
+        </section>
+
+        <!-- Contact Info & Form -->
+        <section style="background-color: var(--very-light-gray);">
+            <div class="container contact-grid">
+                <div class="contact-info-block">
+                    <h3>Contact Information</h3>
+                    <% contactInfo.forEach(function(info) { %>
+                        <div class="info-item">
+                            <i class="<%= info.iconClass %> info-icon"></i>
+                            <div>
+                                <strong><%= info.label %></strong>
+                                <% if (info.type === 'address' || info.type === 'text') { %>
+                                    <p><%= info.value %></p>
+                                <% } else if (info.type === 'phone') { %>
+                                    <p>
+                                        <a href="tel:<%= info.value %>"><%= info.value %></a>
+                                        <% if (info.details) { %> <span><%= info.details %></span><% } %>
+                                    </p>
+                                <% } else if (info.type === 'email') { %>
+                                    <p><a href="mailto:<%= info.value %>"><%= info.value %></a></p>
+                                <% } else if (info.type === 'whatsapp') { %>
+                                    <p><%= info.details %></p>
+                                    <a href="<%= info.url %>" class="whatsapp-btn">WhatsApp Us</a>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <div class="contact-form-card">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form">
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Phone Number">
+                        <select name="subject">
+                            <option value="">Subject (e.g., Membership)</option>
+                            <% subjects.forEach(function(subject) { %>
+                                <option value="<%= subject %>"><%= subject %></option>
+                            <% }); %>
+                        </select>
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <p style="font-size: 0.8rem; color: var(--muted-grey);"><%= privacyNote %></p>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2 class="section-title"><%= mapTitle %></h2>
+                <div class="map-container">
+                    <iframe src="<%= mapSrc %>" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Contact Us -->
+        <section style="background-color: var(--light-grey);">
+            <div class="container">
+                <h2 class="section-title"><%= whyContactTitle %></h2>
+                <div class="why-contact-grid">
+                    <% whyContactCards.forEach(function(card) { %>
+                        <div class="why-contact-card">
+                            <div class="icon"><%= card.icon %></div>
+                            <h4><%= card.title %></h4>
+                            <p><%= card.text %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2 class="section-title"><%= finalCtaTitle %></h2>
+                <p><%= finalCtaSubtitle %></p>
+                <div class="cta-buttons">
+                    <% finalCtaButtons.forEach(function(btn) { %>
+                        <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <%- include('partials/footer', footerData) %>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <meta name="description" content="<%= pageDescription %>">
+    <link rel="canonical" href="<%= canonicalUrl %>">
+    <meta property="og:title" content="<%= ogTitle %>">
+    <meta property="og:description" content="<%= ogDescription %>">
+    <meta property="og:url" content="<%= ogUrl %>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= ogImage %>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+    <%- include('partials/header', headerData) %>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="hero-overlay"></div>
+            <div class="about-hero-content">
+                <h1><%= aboutHeroTitle %></h1>
+                <p><%= aboutHeroSubtitle %></p>
+                <div class="cta-buttons">
+                    <% aboutHeroButtons.forEach(function(btn) { %>
+                        <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Story -->
+        <section class="about-story">
+            <div class="container about-story-grid">
+                <div>
+                    <h2 class="section-title"><%= aboutStoryTitle %></h2>
+                    <p><%= aboutStoryText %></p>
+                    <% if (aboutStoryImg) { %>
+                        <img src="<%= aboutStoryImg %>" alt="About Story Image">
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission, Vision, Values -->
+        <section style="background-color: var(--very-light-gray);">
+            <div class="container">
+                <div class="mvv-grid">
+                    <% mvv.forEach(function(item) { %>
+                        <div class="mvv-card">
+                            <span class="icon"><%= item.icon %></span>
+                            <h3><%= item.title %></h3>
+                            <p><%= item.text %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Growth & Reach -->
+        <section>
+            <div class="container">
+                <h2 class="section-title"><%= growthTitle %></h2>
+                <div class="growth-stats">
+                    <% growthStats.forEach(function(stat) { %>
+                        <div class="stat-card">
+                            <span class="icon"><%= stat.icon %></span>
+                            <h3><%= stat.value %></h3>
+                            <p><%= stat.label %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Commitment -->
+        <section class="trust-commitment-section" style="background-color: var(--light-grey);">
+            <div class="container">
+                <h2 class="section-title"><%= trustTitle %></h2>
+                <p><%= trustSubtitle %></p>
+                <ul>
+                    <% trustChecklist.forEach(function(item) { %>
+                        <li><%= item %></li>
+                    <% }); %>
+                </ul>
+                <p><%= trustFooter %></p>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="why-choose-us">
+            <div class="container">
+                <h2 class="section-title"><%= whyChooseTitle %></h2>
+                <div class="trust-factors-grid">
+                    <% trustFactors.forEach(function(factor) { %>
+                        <div class="trust-card">
+                            <div class="icon-circle"><%= factor.icon %></div>
+                            <h4><%= factor.title %></h4>
+                            <p><%= factor.text %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section" style="background-color: var(--very-light-gray);">
+            <div class="container">
+                <h2 class="section-title"><%= teamTitle %></h2>
+                <div class="team-grid">
+                    <% teamMembers.forEach(function(member) { %>
+                        <div class="team-member">
+                            <img src="<%= member.img %>" alt="<%= member.name %>">
+                            <h4><%= member.name %></h4>
+                            <p><%= member.role %></p>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title"><%= testimonialsTitle %></h2>
+                <div class="testimonial-carousel-container">
+                    <div class="testimonial-carousel">
+                        <% testimonials.forEach(function(t) { %>
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <p><%= t.text %></p>
+                                    <div class="reviewer">
+                                        <div class="stars">
+                                            <% if (t.rating && typeof t.rating === 'string') { %>
+                                                <% for (var i = 0; i < t.rating.length; i++) { if (t.rating[i] === '⭐') { %>
+                                                    <i class="fa-solid fa-star"></i>
+                                                <% } } %>
+                                            <% } else if (t.stars) { %>
+                                                <% for (var i = 0; i < t.stars; i++) { %>
+                                                    <i class="fa-solid fa-star"></i>
+                                                <% } %>
+                                            <% } %>
+                                        </div>
+                                        <p class="name"><%= t.author %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                    <div class="carousel-nav">
+                        <% testimonials.forEach(function(t, i) { %>
+                            <div class="dot<%= i === 0 ? ' active' : '' %>" data-slide="<%= i %>"></div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <h2 class="section-title"><%= aboutCtaTitle %></h2>
+                <p><%= aboutCtaSubtitle %></p>
+                <div class="cta-buttons">
+                    <% aboutCtaButtons.forEach(function(btn) { %>
+                        <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <%- include('partials/footer', footerData) %>
+    <script src="/js/script.js"></script>
+</body>
+</html>
