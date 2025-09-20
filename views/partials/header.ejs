@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <meta name="description" content="<%= pageDescription %>">
+    <link rel="canonical" href="<%= canonicalUrl %>">
+    <meta property="og:title" content="<%= ogTitle %>">
+    <meta property="og:description" content="<%= ogDescription %>">
+    <meta property="og:url" content="<%= ogUrl %>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= ogImage %>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/images/logos/favicon.ico">
+</head>
+<body>
+
+<header class="header" id="myHeader">
+	<a href="/" class="logo">
+		<img src="<%= headerData.headerLogoUrl %>" alt="Logo">
+	</a>
+	<div class="nav-wrapper">
+		<nav class="nav-menu">
+			<ul>
+				<% headerData.navLinks.forEach(function(link) { %>
+					<li><a href="<%= link.url %>"><%= link.text %></a></li>
+				<% }); %>
+			</ul>
+		</nav>
+		<div class="nav-buttons">
+			<a href="<%= headerData.loginUrl %>" class="login-button">Login</a>
+			<a href="<%= headerData.joinMembershipUrl %>" class="cta-button">Join Membership</a>
+		</div>
+	</div>
+	<button class="hamburger" id="hamburger">&#9776;</button>
+</header>
+<div class="overlay" id="overlay"></div>
+<div class="side-drawer" id="sideDrawer">
+	<div class="side-drawer-header">
+		<a href="/" class="logo">
+			<img src="<%= headerData.headerLogoUrl %>" alt="Logo">
+		</a>
+		<button class="close-btn" id="closeBtn">&times;</button>
+	</div>
+	<nav class="side-drawer-nav">
+		<% headerData.sideNavLinks.forEach(function(link) { %>
+			<a href="<%= link.url %>"><%= link.text %></a>
+		<% }); %>
+	</nav>
+	<div class="side-drawer-footer">
+		<a href="<%= headerData.loginUrl %>" class="login-button">Login</a>
+		<a href="<%= headerData.joinMembershipUrl %>" class="cta-button">Join Membership</a>
+	</div>
+</div>

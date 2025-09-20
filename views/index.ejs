@@ -1,0 +1,227 @@
+
+    <%- include('partials/header', headerData) %>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="video-background">
+                <video autoplay muted loop id="heroVideo">
+                    <source src="<%= heroVideoUrl %>" type="video/mp4"> Your browser does not support the video tag.
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-content">
+                <h1><%= heroTitle %></h1>
+                <p><%= heroSubtitle %></p>
+                <div class="cta-buttons">
+                    <% heroButtons.forEach(function(btn) { %>
+                        <a href="<%= btn.url %>" class="btn <%= btn.class %>"><i class="<%= btn.icon %>"></i> <%= btn.text %></a>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Logos 
+        <section class="partner-logos">
+            <div class="container">
+                <h2><%= partnerTitle %></h2>
+                <div class="logo-grid">
+                    <% partnerLogos.forEach(function(row) { %>
+                        <div class="logo-row<%= row.reverse ? ' reverse' : '' %>">
+                            <% row.logos.forEach(function(logo) { %>
+                                <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                            <% }); %>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>-->
+        <section class="partner-logos">
+            <div class="container">
+                <h2><%= partnerTitle %></h2>
+                <div class="logo-grid">
+                    <div class="logo-row">
+                        <% hotelLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                        <% hotelLogos.forEach(function(logo) { %> <!-- Duplicate for seamless scroll -->
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+						<% hotelLogos.forEach(function(logo) { %> <!-- Duplicate for seamless scroll -->
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                    </div>
+                    <div class="logo-row reverse">
+                        <% airlineLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                        <% airlineLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+						<% airlineLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                        <% airlineLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                    </div>
+                    <div class="logo-row">
+                        <% travelLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                        <% travelLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+						<% travelLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                        <% travelLogos.forEach(function(logo) { %>
+                            <img src="<%= logo.src %>" alt="<%= logo.alt %>">
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Propositions -->
+        <section class="value-propositions">
+            <div class="container">
+                <% valueProps.forEach(function(prop) { %>
+                    <div class="pillar-card">
+                        <div class="icon-circle"><%= prop.icon %></div>
+                        <h3><%= prop.title %></h3>
+                        <p><%= prop.description %></p>
+                        <a href="<%= prop.url %>">Learn More</a>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+
+        <!-- Destinations -->
+        <section class="destinations-grid">
+            <div class="container">
+                <h2 class="section-title"><%= destinationsTitle %></h2>
+                <div class="grid-container">
+                    <% destinations.forEach(function(dest) { %>
+                        <div class="destination-card">
+                            <img src="<%= dest.img %>" alt="<%= dest.name %>">
+                            <div class="card-overlay">
+                                <h3><%= dest.name %></h3>
+                                <a href="<%= dest.url %>" class="view-more-btn">View More</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <div class="cta-bottom cta-buttons">
+                    <a href="<%= allDestinationsUrl %>" class="btn btn-primary">See All Destinations</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Trust -->
+        <section class="why-choose-us">
+            <div class="container trust-container">
+                <div class="trust-content">
+                    <h2><%= whyTrustTitle %></h2>
+                    <ul class="checklist">
+                        <% trustChecklist.forEach(function(item) { %>
+                            <li><span class="check-icon">✔️</span> <%= item %></li>
+                        <% }); %>
+                    </ul>
+                    <div class="cta-buttons">
+                        <a href="<%= aboutUsUrl %>" class="btn btn-primary">Learn More About Us</a>
+                    </div>
+                </div>
+                <div class="trust-image">
+                    <img src="<%= trustImage %>" alt="Happy travelers">
+                </div>
+            </div>
+        </section>
+
+        <!-- Membership Highlight -->
+        <section class="membership-highlight">
+            <div class="container highlight-content">
+                <h2><%= membershipTitle %></h2>
+                <p><%= membershipDescription %></p>
+                <div class="cta-buttons">
+                    <a href="<%= joinMembershipUrl %>" class="btn btn-primary">Join Membership – Start Today</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title"><%= testimonialsTitle %></h2>
+                <div class="testimonial-carousel-container">
+                    <div class="testimonial-carousel">
+                        <% testimonials.forEach(function(t) { %>
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <p><%= t.text %></p>
+                                    <div class="reviewer">
+                                        <div class="stars">
+                                            <% if (t.rating && typeof t.rating === 'string') { %>
+                                                <% for (var i = 0; i < t.rating.length; i++) { if (t.rating[i] === '⭐') { %>
+                                                    <i class="fa-solid fa-star"></i>
+                                                <% } } %>
+                                            <% } else if (t.stars) { %>
+                                                <% for (var i = 0; i < t.stars; i++) { %>
+                                                    <i class="fa-solid fa-star"></i>
+                                                <% } %>
+                                            <% } %>
+                                        </div>
+                                        <p class="name"><%= t.author %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                    <div class="carousel-nav">
+                        <% testimonials.forEach(function(t, i) { %>
+                            <div class="dot<%= i === 0 ? ' active' : '' %>" data-slide="<%= i %>"></div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="blog-section">
+            <div class="container">
+                <h2 class="section-title"><%= blogTitle %></h2>
+                <div class="blog-grid">
+                    <% blogs.forEach(function(blog) { %>
+                        <div class="blog-card">
+                            <img src="<%= blog.img %>" alt="<%= blog.alt %>">
+                            <div class="blog-card-content">
+                                <h3><%= blog.title %></h3>
+                                <p><%= blog.description %></p>
+                                <a href="<%= blog.url %>">Read More</a>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <div class="cta-bottom">
+                    <a href="<%= blogUrl %>" class="btn btn-secondary">Visit Our Blog</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter-section">
+            <div class="container newsletter-content">
+                <h2><%= newsletterTitle %></h2>
+                <p><%= newsletterSubtitle %></p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <div class="cta-buttons">
+                        <a href="<%= newsletterBtnUrl %>" class="btn btn-primary"><%= newsletterBtnText %></a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer', footerData) %>

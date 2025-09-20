@@ -1,0 +1,41 @@
+
+    <%- include('partials/header', headerData) %>
+
+
+<main>
+    <section class="hero-section">
+        <img src="<%= heroImage %>" alt="destination-in-india-hero" class="hero-bg-img" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+        
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1><%= heroTitle %></h1>
+            <p><%= heroSubtitle %></p>
+            <div class="cta-buttons">
+                <% heroButtons.forEach(function(btn) { %>
+                    <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations-grid">
+        <div class="container">
+            <h2 class="section-title"><%= destinationsTitle %></h2>
+            <p class="section-subtitle"><%= destinationsSubtitle %></p>
+            <div class="grid-container">
+                <% destinations.forEach(function(dest) { %>
+                    <div class="destination-card">
+                        <img src="<%= dest.image %>" alt="<%= dest.name %>">
+                        <div class="card-overlay">
+                            <h3><%= dest.name %></h3>
+                            <a href="<%= dest.link %>" class="view-more-btn">View More</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <%- include('partials/footer', footerData) %>
+

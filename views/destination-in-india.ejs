@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations in India - Incredible Holidays & Travels</title>
+    <meta name="description" content="Explore top destinations in India with Incredible Holidays & Travels. From serene beaches to majestic mountains, find your perfect getaway.">
+    <link rel="canonical" href="https://www.incredibleholidaysandtravels.com/destination-in-india">
+    <meta property="og:title" content="Destinations in India - Incredible Holidays & Travels">
+    <meta property="og:description" content="Explore top destinations in India with Incredible Holidays & Travels. From serene beaches to majestic mountains, find your perfect getaway.">
+    <meta property="og:url" content="https://www.incredibleholidaysandtravels.com/destination-in-india">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.incredibleholidaysandtravels.com/images/og-image.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+</head>
+<body>
+    <%- include('partials/header', headerData) %>
+
+<main>
+    <section class="hero-section">
+        <img src="<%= heroImage %>" alt="destination-in-india-hero" class="hero-bg-img" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1><%= heroTitle %></h1>
+            <p><%= heroSubtitle %></p>
+            <div class="cta-buttons">
+                <% heroButtons.forEach(function(btn) { %>
+                    <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations-grid">
+        <div class="container">
+            <h2 class="section-title"><%= destinationsTitle %></h2>
+            <p class="section-subtitle"><%= destinationsSubtitle %></p>
+            <div class="grid-container">
+                <% destinations.forEach(function(dest) { %>
+                    <div class="destination-card">
+                        <img src="<%= dest.image %>" alt="<%= dest.name %>">
+                        <div class="card-overlay">
+                            <h3><%= dest.name %></h3>
+                            <% if(dest.description) { %><p><%= dest.description %></p><% } %>
+                            <a href="<%= dest.link || '#' %>" class="view-more-btn">View More</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+</main>
+    <%- include('partials/footer', footerData) %>
+</body>
+</html>

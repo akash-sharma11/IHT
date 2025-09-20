@@ -1,0 +1,38 @@
+<!-- Template for Gangtok -->
+<%- include('../../partials/header', headerData) %>
+
+<main>
+    <section class="hero-section">
+        <img src="<%= heroImage %>" alt="destination-in-india-hero" class="hero-bg-img" fetchpriority="high" decoding="async" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1><%= heroTitle %></h1>
+            <p><%= heroSubtitle %></p>
+            <div class="cta-buttons">
+                <% heroButtons.forEach(function(btn) { %>
+                    <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <section class="destinations-grid">
+        <div class="container">
+            <h2 class="section-title"><%= hotelsTitle %></h2>
+            <p class="section-subtitle"><%= hotelsSubtitle %></p>
+            <div class="grid-container">
+                <% hotels.forEach(function(hotel) { %>
+                    <div class="destination-card">
+                        <img src="<%= hotel.image %>" alt="<%= hotel.alt %>">
+                        <div class="card-overlay">
+                            <h3><%= hotel.name %></h3>
+                            <!--<a href="<%= hotel.link %>" class="view-more-btn">View Details</a>-->
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+</main>
+
+<%- include('../../partials/footer', footerData) %>

@@ -1,0 +1,204 @@
+
+    <%- include('partials/header', headerData) %>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section membership-page">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1><%= heroTitle %></h1>
+                    <p><%= heroSubtitle %></p>
+                    <div class="hero-buttons">
+                        <% heroButtons.forEach(btn => { %>
+                            <a href="<%= btn.url %>" class="btn <%= btn.class %>">
+                                <i class="<%= btn.icon %>"></i> <%= btn.text %>
+                            </a>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Member Section -->
+        <section class="why-member-section">
+            <div class="container">
+                <h2 class="section-title"><%= whyMemberTitle %></h2>
+                <p class="section-subtitle"><%= whyMemberSubtitle %></p>
+                <div class="benefit-grid">
+                    <% benefits.forEach(benefit => { %>
+                        <div class="benefit-card">
+                            <i class="<%= benefit.icon %>"></i>
+                            <h3><%= benefit.title %></h3>
+                            <p><%= benefit.text %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plans Section -->
+        <section id="plans-section" class="plans-section membership-pricing">
+            <div class="membership-pricing-wrap wrap">
+                <h2 class="section-title"><%= plansTitle %></h2>
+                <p class="section-subtitle"><%= plansSubtitle %></p>
+                <div class="seg-wrap">
+                    <div class="seg" id="durControl" role="tablist" aria-label="Membership duration">
+                        <% durations.forEach((dur, i) => { %>
+                            <button class="seg-btn" data-years="<%= dur.years %>" aria-pressed="<%= i === 0 ? 'true' : 'false' %>"><%= dur.label %></button>
+                        <% }) %>
+                    </div>
+                </div>
+                <div class="grid" id="pricingGrid">
+                    <% plans.forEach(plan => { %>
+                        <div class="card<%= plan.featured ? ' featured' : '' %>" data-plan="<%= plan.code %>">
+                            <% if (plan.pill) { %><div class="pill"><%= plan.pill %></div><% } %>
+                            <div class="discount-badge <%= plan.badgeClass %>" aria-hidden="true"><span class="badge-text"></span></div>
+                            <div class="top">
+                                <div>
+                                    <div class="title"><%= plan.title %></div>
+                                    <div class="subtitle"><%= plan.subtitle %></div>
+                                </div>
+                                <div class="subtitle" style="text-align:right"><%= plan.topRight %></div>
+                            </div>
+                            <div class="price-block">
+                                <div class="price-left">
+                                    <p class="price-current price-pop"><%= plan.price %></p>
+                                    <div class="price-label">Total membership price</div>
+                                </div>
+                                <div class="price-meta">
+                                    <div class="original" aria-hidden="true"><%= plan.original %></div>
+                                    <div class="per-year"><%= plan.perYear %></div>
+                                    <div class="savings" aria-hidden="true"><%= plan.savings %></div>
+                                </div>
+                            </div>
+                            <!-- Features (optional) -->
+                            <% if (plan.features && plan.features.length) { %>
+                                <ul class="features">
+                                    <% plan.features.forEach(f => { %>
+                                        <li><span class="tick">✓</span> <%= f %></li>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
+                            <div class="actions">
+                                <button class="btn primary join-btn">Join Now</button>
+                                <button class="btn ghost details-btn">Details</button>
+                            </div>
+                            <div style="color:var(--dark-grey); font-size:13px; margin-top:10px">Price shown is after discount (if any). Taxes &amp; T&amp;C apply.</div>
+                            <!-- Pricing data for JS (optional) -->
+                            <% if (plan.pricingData) { 
+                                // Convert pricingData string to real data-* attributes
+                                const attrs = plan.pricingData.split(' ').filter(Boolean).map(pair => {
+                                    const [key, value] = pair.split('=');
+                                    return key + '=' + value;
+                                }).join(' ');
+                            %>
+                                <div class="pricing-data" style="display:none;" <%- attrs %>></div>
+                            <% } %>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Included -->
+        <section class="whats-included-section">
+            <div class="container">
+                <h2 class="section-title"><%= includedTitle %></h2>
+                <div class="included-grid">
+                    <% included.forEach(item => { %>
+                        <div class="included-item">
+                            <i class="<%= item.icon %>"></i>
+                            <p><%= item.text %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title"><%= testimonialsTitle %></h2>
+                <div class="testimonial-carousel-container">
+                    <div class="testimonial-carousel">
+                        <% testimonials.forEach(t => { %>
+                            <div class="testimonial-slide">
+                                <div class="testimonial-card">
+                                    <p><%= t.text %></p>
+                                    <div class="reviewer">
+                                        <div class="stars">
+                                            <% for (let i = 0; i < t.stars; i++) { %>
+                                                <i class="fa-solid fa-star"></i>
+                                            <% } %>
+                                        </div>
+                                        <p class="name"><%= t.author %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                    <div class="carousel-nav">
+                        <% testimonials.forEach((t, i) => { %>
+                            <div class="dot<%= i === 0 ? ' active' : '' %>" data-slide="<%= i %>"></div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works-section">
+            <div class="container">
+                <h2 class="section-title"><%= howItWorksTitle %></h2>
+                <div class="steps-container">
+                    <% steps.forEach((step, i) => { %>
+                        <div class="step-card">
+                            <div class="step-icon"><i class="<%= step.icon %>"></i></div>
+                            <h3>Step <%= i+1 %>: <%= step.title %></h3>
+                            <p><%= step.text %></p>
+                        </div>
+                        <% if (i < steps.length - 1) { %>
+                            <div class="step-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        <% } %>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title"><%= faqTitle %></h2>
+                <div class="accordion-container">
+                    <% faqs.forEach(faq => { %>
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <%= faq.q %>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </summary>
+                            <div class="accordion-content">
+                                <p><%= faq.a %></p>
+                            </div>
+                        </details>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta-section">
+            <div class="container">
+                <h2><%= finalCtaTitle %></h2>
+                <p><%= finalCtaSubtitle %></p>
+                <div class="final-cta-buttons">
+                    <% finalCtaButtons.forEach(btn => { %>
+                        <a href="<%= btn.url %>" class="btn <%= btn.class %>"><%= btn.text %></a>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="sticky-cta-mobile">
+        <a href="#plans-section" class="btn btn-join">Join Now</a>
+    </div>
+    <%- include('partials/footer', footerData) %>
